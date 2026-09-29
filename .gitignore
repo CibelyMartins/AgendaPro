@@ -1,0 +1,17 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente e credenciais
+.env
+.env.*
+!.env.example
+
+# Arquivos de compilação e cobertura
+dist/
+coverage/
+
+# Arquivos de sistema e editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
