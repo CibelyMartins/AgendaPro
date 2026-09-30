@@ -8,7 +8,7 @@ Permitir o cadastro e a organização de serviços por categoria, além do regis
 
 ## Integrante
 
-- [Substitua pelo seu nome completo]
+- Cibely Godoy Martins
 
 ## Tecnologias utilizadas
 
