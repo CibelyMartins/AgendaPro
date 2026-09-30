@@ -66,17 +66,29 @@ Uma categoria pode possuir vários serviços. Um serviço pode possuir vários a
 
 O script de criação das tabelas, relacionamentos, índices e regras está disponível em [`database/schema.sql`](database/schema.sql).
 
+## Configuração e execução do backend
+
+Entre na pasta `backend`, instale as dependências e inicie a API em modo de desenvolvimento:
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Com a API iniciada, consulte a rota de verificação em `http://localhost:3000/api/health`.
+
 ## Variáveis de ambiente
 
-Copie o arquivo `.env.example` para `.env` e informe as credenciais do seu projeto Supabase.
+Copie o arquivo `backend/.env.example` para `backend/.env` e informe as credenciais do seu projeto Supabase.
 
 ```env
 PORT=3000
 SUPABASE_URL=https://seu-projeto.supabase.co
-SUPABASE_ANON_KEY=sua_chave_anon_aqui
+SUPABASE_SECRET_KEY=sua_chave_secret_aqui
 ```
 
-> O arquivo `.env` contém credenciais e não deve ser enviado ao GitHub.
+> O arquivo `.env` contém credenciais e não deve ser enviado ao GitHub. A chave `secret` só será utilizada pelo backend e jamais poderá ser colocada no frontend.
 
 ## Próximas seções
 

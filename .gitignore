@@ -15,3 +15,10 @@ coverage/
 Thumbs.db
 .vscode/
 *.log
+
+# Arquivos baixados acidentalmente pelo navegador
+Untitled query _ SQL Editor _ AgendaPro's Project _ AgendaPro _ Supabase.html
+Untitled query _ SQL Editor _ AgendaPro's Project _ AgendaPro _ Supabase_files/
+
+# Enunciado usado apenas como referência local
+APS – Desenvolvimento de API REST c.txt
