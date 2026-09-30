@@ -1,14 +1,14 @@
 # AgendaPro API
 
-API REST para o gerenciamento de categorias, serviços e agendamentos de uma empresa prestadora de serviços, como uma clínica, salão ou barbearia.
+API REST para gerenciar categorias, serviços e agendamentos de uma empresa prestadora de serviços, como uma clínica, salão ou barbearia.
 
 ## Objetivo
 
-O projeto permite cadastrar os serviços oferecidos, organizá-los por categoria e registrar os agendamentos de clientes. A aplicação foi desenvolvida para atender à APS da disciplina de Back-End.
+Permitir o cadastro e a organização de serviços por categoria, além do registro de agendamentos de clientes.
 
 ## Integrante
 
-- Godoy *(substituir pelo seu nome completo antes da entrega)*
+- [Substitua pelo seu nome completo]
 
 ## Tecnologias utilizadas
 
@@ -17,7 +17,6 @@ O projeto permite cadastrar os serviços oferecidos, organizá-los por categoria
 - Express
 - Supabase
 - PostgreSQL
-- React *(interface administrativa simples)*
 - Git e GitHub
 
 ## Entidades e relacionamento
@@ -36,7 +35,7 @@ Categoria (1) ──< Serviço (1) ──< Agendamento
 ### Serviço
 
 - `id`: UUID;
-- `category_id`: UUID da categoria à qual pertence;
+- `category_id`: UUID da categoria;
 - `name`: nome do serviço;
 - `description`: descrição opcional;
 - `price`: preço do serviço;
@@ -46,50 +45,109 @@ Categoria (1) ──< Serviço (1) ──< Agendamento
 ### Agendamento
 
 - `id`: UUID;
-- `service_id`: UUID do serviço agendado;
+- `service_id`: UUID do serviço;
 - `client_name`: nome do cliente;
 - `client_phone`: telefone do cliente;
-- `scheduled_at`: data e hora do agendamento;
+- `scheduled_at`: data e hora;
 - `status`: agendado, concluído ou cancelado;
 - `notes`: observações opcionais.
 
-Uma categoria pode possuir vários serviços. Um serviço pode possuir vários agendamentos. Cada serviço pertence a uma categoria e cada agendamento pertence a um serviço.
+## Estrutura do projeto
 
-## Regras de negócio
+```text
+src/
+├── config/       # conexão com o Supabase
+├── controllers/  # requisições, validações e respostas HTTP
+├── models/       # operações no banco de dados
+├── routes/       # definição das rotas
+├── app.ts        # configuração do Express
+└── server.ts     # inicialização do servidor
+```
 
-- Um serviço só pode ser cadastrado em uma categoria existente.
-- Um agendamento só pode ser cadastrado para um serviço existente e ativo.
-- Não pode haver dois agendamentos ativos para o mesmo serviço no mesmo horário.
-- Categorias com serviços e serviços com agendamentos não podem ser excluídos.
-
-## Banco de dados
-
-O script de criação das tabelas, relacionamentos, índices e regras está disponível em [`database/schema.sql`](database/schema.sql).
-
-## Configuração e execução do backend
-
-Entre na pasta `backend`, instale as dependências e inicie a API em modo de desenvolvimento:
+## Configuração e execução
 
 ```bash
-cd backend
+git clone <url-do-repositorio>
+cd AgendaPro
 npm install
+```
+
+Copie `.env.example` para `.env` e preencha as credenciais do seu projeto Supabase. Depois, execute:
+
+```bash
 npm run dev
 ```
 
-Com a API iniciada, consulte a rota de verificação em `http://localhost:3000/api/health`.
+A API estará disponível em `http://localhost:3000`.
 
 ## Variáveis de ambiente
-
-Copie o arquivo `backend/.env.example` para `backend/.env` e informe as credenciais do seu projeto Supabase.
 
 ```env
 PORT=3000
 SUPABASE_URL=https://seu-projeto.supabase.co
-SUPABASE_SECRET_KEY=sua_chave_secret_aqui
+SUPABASE_SECRET_KEY=sb_secret_sua_chave_aqui
 ```
 
-> O arquivo `.env` contém credenciais e não deve ser enviado ao GitHub. A chave `secret` só será utilizada pelo backend e jamais poderá ser colocada no frontend.
+> Nunca envie o arquivo `.env` ou a chave secreta ao repositório.
 
-## Próximas seções
+## Banco de dados
 
-As instruções de instalação, estrutura do projeto, documentação dos endpoints, exemplos de requisições e imagens da interface serão completadas durante o desenvolvimento.
+O script para criar as tabelas e os relacionamentos está em [database/schema.sql](database/schema.sql). Execute-o no SQL Editor do Supabase.
+
+## Endpoints
+
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| GET | `/categories` | Lista categorias |
+| GET | `/categories/:id` | Busca categoria por UUID |
+| POST | `/categories` | Cria categoria |
+| PUT | `/categories/:id` | Atualiza categoria |
+| DELETE | `/categories/:id` | Exclui categoria |
+| GET | `/services` | Lista serviços |
+| GET | `/services/:id` | Busca serviço por UUID |
+| POST | `/services` | Cria serviço |
+| PUT | `/services/:id` | Atualiza serviço |
+| DELETE | `/services/:id` | Exclui serviço |
+| GET | `/appointments` | Lista agendamentos |
+| GET | `/appointments/:id` | Busca agendamento por UUID |
+| POST | `/appointments` | Cria agendamento |
+| PUT | `/appointments/:id` | Atualiza agendamento |
+| DELETE | `/appointments/:id` | Exclui agendamento |
+
+## Exemplos de requisições
+
+### Criar categoria
+
+```json
+{
+  "name": "Cortes de cabelo",
+  "description": "Cortes masculinos e femininos",
+  "active": true
+}
+```
+
+### Criar serviço
+
+```json
+{
+  "category_id": "UUID_DA_CATEGORIA",
+  "name": "Corte feminino",
+  "description": "Corte e finalização",
+  "price": 80,
+  "duration_minutes": 60,
+  "active": true
+}
+```
+
+### Criar agendamento
+
+```json
+{
+  "service_id": "UUID_DO_SERVICO",
+  "client_name": "Maria Silva",
+  "client_phone": "11999999999",
+  "scheduled_at": "2026-10-05T14:00:00-03:00",
+  "status": "agendado",
+  "notes": "Cliente prefere atendimento à tarde"
+}
+```
