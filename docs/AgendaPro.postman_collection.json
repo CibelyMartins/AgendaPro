@@ -1,0 +1,362 @@
+{
+  "info": {
+    "_postman_id": "d7c3cf3e-e2b8-4a39-859b-0d8cd08c557a",
+    "name": "AgendaPro",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57629514",
+    "_collection_link": "https://go.postman.co/collection/57629514-d7c3cf3e-e2b8-4a39-859b-0d8cd08c557a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "categories",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Cortes de cabelo\",\r\n  \"description\": \"Cortes masculinos e femininos\",\r\n  \"active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/categories",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/categories",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "category",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Cortes e cuidados\",\r\n  \"description\": \"Serviços de corte, acabamento e cuidados capilares\",\r\n  \"active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/categories/2668a26e-14ba-4b7a-85fb-82fdfc996429",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "categories",
+                "2668a26e-14ba-4b7a-85fb-82fdfc996429"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/categories/2668a26e-14ba-4b7a-85fb-82fdfc996429",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "categories",
+                "2668a26e-14ba-4b7a-85fb-82fdfc996429"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "category invalid",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/categories",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "services",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"category_id\": \"2668a26e-14ba-4b7a-85fb-82fdfc996429\",\r\n  \"name\": \"Corte masculino\",\r\n  \"description\": \"Corte tradicional com acabamento\",\r\n  \"price\": 45,\r\n  \"duration_minutes\": 30,\r\n  \"active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/services",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/services",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "service",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"category_id\": \"2668a26e-14ba-4b7a-85fb-82fdfc996429\",\r\n  \"name\": \"Corte masculino premium\",\r\n  \"description\": \"Corte com acabamento e lavagem\",\r\n  \"price\": 55,\r\n  \"duration_minutes\": 40,\r\n  \"active\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/services/7850c990-ac8b-4567-972a-83b6caa9ccd8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "services",
+                "7850c990-ac8b-4567-972a-83b6caa9ccd8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "service",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/services/7850c990-ac8b-4567-972a-83b6caa9ccd8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "services",
+                "7850c990-ac8b-4567-972a-83b6caa9ccd8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "appointments",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"service_id\": \"7850c990-ac8b-4567-972a-83b6caa9ccd8\",\r\n  \"client_name\": \"Cibely Martins\",\r\n  \"client_phone\": \"(41) 99999-9999\",\r\n  \"scheduled_at\": \"2026-10-03T14:00:00.000Z\",\r\n  \"status\": \"agendado\",\r\n  \"notes\": \"Cliente pediu acabamento na máquina.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/appointments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "appointments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "appointments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "appointments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "appointment_by_id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/926f0101-e48f-4e34-80a1-3050ca020dce",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "appointments",
+                "926f0101-e48f-4e34-80a1-3050ca020dce"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "appointment",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"service_id\": \"7850c990-ac8b-4567-972a-83b6caa9ccd8\",\r\n  \"client_name\": \"Cibely Martins\",\r\n  \"client_phone\": \"(41) 99999-9999\",\r\n  \"scheduled_at\": \"2026-10-03T14:00:00.000Z\",\r\n  \"status\": \"concluido\",\r\n  \"notes\": \"Atendimento concluído com sucesso.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/appointments/926f0101-e48f-4e34-80a1-3050ca020dce",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "appointments",
+                "926f0101-e48f-4e34-80a1-3050ca020dce"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "appointment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/appointments/926f0101-e48f-4e34-80a1-3050ca020dce",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "appointments",
+                "926f0101-e48f-4e34-80a1-3050ca020dce"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
