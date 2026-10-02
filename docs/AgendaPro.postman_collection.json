@@ -133,6 +133,26 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "category_by_id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/categories/3eb651f1-38e4-4fa8-b50a-842350ed6304",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "categories",
+                "3eb651f1-38e4-4fa8-b50a-842350ed6304"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -230,6 +250,26 @@
               "path": [
                 "services",
                 "7850c990-ac8b-4567-972a-83b6caa9ccd8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "service_by_id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/services/90102bf3-b0a4-470b-8c85-fa67d8faa80b",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "services",
+                "90102bf3-b0a4-470b-8c85-fa67d8faa80b"
               ]
             }
           },
