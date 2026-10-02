@@ -162,7 +162,7 @@ Além das chaves estrangeiras, o banco aplica as seguintes regras:
 - `services.price` e `services.duration_minutes` devem ser maiores que zero;
 - um serviço não pode ser excluído se possuir agendamentos vinculados;
 - uma categoria não pode ser excluída se possuir serviços vinculados;
-- não pode existir mais de um agendamento para o mesmo serviço no mesmo horário.
+- não pode existir sobreposição de horários para o mesmo serviço: a API considera a duração do serviço e ignora agendamentos cancelados.
 
 ## 9. Documentação dos endpoints
 
@@ -249,7 +249,7 @@ Além das chaves estrangeiras, o banco aplica as seguintes regras:
 
 ## Testes e respostas HTTP
 
-Os endpoints foram testados no Postman. A coleção está disponível em [docs/AgendaPro.postman_collection.json](docs/AgendaPro.postman_collection.json) e contém todos os endpoints CRUD, além de cenários de validação.
+Os endpoints foram testados no Postman. A coleção está disponível em [docs/AgendaPro.postman_collection.json](docs/AgendaPro.postman_collection.json) e contém todos os endpoints CRUD, além de cenários de validação e conflito de horário.
 
 | Status | Situação |
 | --- | --- |

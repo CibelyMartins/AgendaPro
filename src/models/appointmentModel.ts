@@ -32,6 +32,24 @@ async function findById(id: string) {
   return data;
 }
 
+async function findActiveByServiceId(serviceId: string, appointmentIdToIgnore?: string) {
+  let query = supabase
+    .from('appointments')
+    .select('id, scheduled_at, status')
+    .eq('service_id', serviceId)
+    .neq('status', 'cancelado');
+
+  if (appointmentIdToIgnore) {
+    query = query.neq('id', appointmentIdToIgnore);
+  }
+
+  const { data, error } = await query;
+
+  if (error) throw error;
+
+  return data;
+}
+
 async function create(appointmentData: AppointmentData) {
   const { data, error } = await supabase
     .from('appointments')
@@ -84,6 +102,7 @@ async function remove(id: string) {
 export default {
   findAll,
   findById,
+  findActiveByServiceId,
   create,
   update,
   remove,

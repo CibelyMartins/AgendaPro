@@ -34,6 +34,28 @@ function isDatabaseError(error: unknown, code: string) {
     && (error as { code?: string }).code === code;
 }
 
+async function hasScheduleConflict(
+  appointmentData: AppointmentData,
+  durationMinutes: number,
+  appointmentIdToIgnore?: string,
+) {
+  if (appointmentData.status === 'cancelado') return false;
+
+  const appointments = await Appointment.findActiveByServiceId(
+    appointmentData.service_id,
+    appointmentIdToIgnore,
+  );
+  const requestedStart = new Date(appointmentData.scheduled_at).getTime();
+  const requestedEnd = requestedStart + durationMinutes * 60_000;
+
+  return appointments.some((appointment) => {
+    const existingStart = new Date(appointment.scheduled_at).getTime();
+    const existingEnd = existingStart + durationMinutes * 60_000;
+
+    return requestedStart < existingEnd && existingStart < requestedEnd;
+  });
+}
+
 async function getAll(_request: Request, response: Response) {
   try {
     const appointments = await Appointment.findAll();
@@ -77,6 +99,12 @@ async function create(request: Request, response: Response) {
       return response.status(400).json({ message: 'O serviço informado está inativo.' });
     }
 
+    if (await hasScheduleConflict(appointmentData, service.duration_minutes)) {
+      return response.status(409).json({
+        message: 'Já existe um agendamento que ocupa este horário para o serviço informado.',
+      });
+    }
+
     const appointment = await Appointment.create(appointmentData);
     return response.status(201).json(appointment);
   } catch (error) {
@@ -104,6 +132,12 @@ async function update(request: Request<IdParams>, response: Response) {
 
     if (!service) {
       return response.status(404).json({ message: 'Serviço não encontrado.' });
+    }
+
+    if (await hasScheduleConflict(appointmentData, service.duration_minutes, request.params.id)) {
+      return response.status(409).json({
+        message: 'Já existe um agendamento que ocupa este horário para o serviço informado.',
+      });
     }
 
     const appointment = await Appointment.update(request.params.id, appointmentData);
